@@ -20,6 +20,7 @@ function showTranscript(text) {
   const words = text.trim().split(/\s+/).length;
   wordCountEl.textContent = `${words.toLocaleString()} words`;
   wordCountEl.className = "word-count visible";
+  copyBtn.textContent = "Copy Again";
   copyBtn.style.display = "block";
 }
 
@@ -105,6 +106,7 @@ fetchBtn.addEventListener("click", async () => {
       throw new Error(result?.error ?? "Unknown error from page.");
     }
 
+    await navigator.clipboard.writeText(result.transcript);
     hideStatus();
     showTranscript(result.transcript);
   } catch (err) {
@@ -117,9 +119,8 @@ fetchBtn.addEventListener("click", async () => {
 copyBtn.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(transcriptEl.value);
-    const orig = copyBtn.textContent;
     copyBtn.textContent = "Copied!";
-    setTimeout(() => { copyBtn.textContent = orig; }, 1500);
+    setTimeout(() => { copyBtn.textContent = "Copy Again"; }, 1500);
   } catch {
     transcriptEl.select();
     document.execCommand("copy");
