@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Lecture Transcript",
+  "version": "1.0.0",
+  "description": "Grab the raw transcript from UT Lectures Online and copy it.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://lecturecapture.la.utexas.edu/*",
+    "https://tower.la.utexas.edu/*"
+  ]
+}
